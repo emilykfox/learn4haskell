@@ -344,6 +344,12 @@ of a book, but you are not limited only by the book properties we described.
 Create your own book type of your dreams!
 -}
 
+data Book = MkBook
+    {  bookName :: String
+    ,  bookAuthor :: String
+    ,  bookNumPage :: Int
+    } deriving (Show)
+
 {- |
 =⚔️= Task 2
 
@@ -375,6 +381,25 @@ after the fight. The battle has the following possible outcomes:
 ♫ NOTE: In this task, you need to implement only a single round of the fight.
 
 -}
+
+data Knight = Knight
+    { knightHealth :: Int
+    , knightAttack :: Int
+    , knightGold :: Int
+    }
+
+data Monster = Monster
+    { monsterHealth :: Int
+    , monsterAttack :: Int
+    , monsterGold :: Int
+    }
+
+fight :: Knight -> Monster -> Int
+fight knight monster
+    | monsterHealth monster < knightAttack knight = knightGold knight + monsterGold monster
+    | knightHealth knight < monsterAttack monster = -1
+    | otherwise = knightGold knight
+
 
 {- |
 =🛡= Sum types
@@ -444,7 +469,7 @@ acceptLoot loot = case loot of
     Sword _ -> "Thanks! That's a great sword!"
     Shield _ -> "I'll accept this shield as a reward!"
     WizardStaff _ _ -> "What?! I'm not a wizard, take it back!"
-@
+
 
 
 To sum up all the above, a data type in Haskell can have zero or more
